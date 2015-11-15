@@ -1,5 +1,6 @@
 ﻿#include "C:/Users/epalman/Documents/Adobe Scripts/Duik_api.jsxinc"
-#include "C:/Users/epalman/Documents/Adobe Scripts/repetitive_actions.jsx"
+//#include "C:/Users/epalman/Documents/Adobe Scripts/libduik.jsxinc"
+#include "C:/Users/epalman/Documents/Adobe Scripts/repetitive_actions.jsxinc"
 
 var characterPath = "C:/Users/epalman/Documents/cartoon/characters/adviser/full.psd";
 var projectPath = "C:/Users/epalman/Documents/cartoon/characters/adviser/comp.aep";
@@ -132,6 +133,8 @@ function talkingHead(comp){
     var headLayers=["Eyebrow Left", "Eyebrow Right", "Pupil Left", "Pupil Right", "Eye Left", "Eye Right", "Jaw", "Face"];
     iterifyArr(headLayers);
     setTalkingHeadLayer(comp, headLayers);
+    var thLayer = comp.layers['Talking Head Controls'];
+    thLayer.property("Effects").property('Mouth Shape Open')('Slider').setValue(2.00);
     }
 
 app.beginUndoGroup('Character Rigging');

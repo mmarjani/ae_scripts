@@ -1,7 +1,12 @@
-﻿#include repetitive_actions.jsx
-#include s1e1.jsx
+﻿#include repetitive_actions.jsxinc
+#include e1s1.jsxinc
 
-function importCharacter(character){;  
+function doMovements(character){
+    
+    
+    };
+
+function importCharacter(character){
             character.folder = importComp(character.project_path, false);
             var folder_items = character.folder.items; 
             for ( var i = 1; i <  folder_items.length; i++ ) { 
@@ -15,6 +20,12 @@ function importCharacter(character){;
             setDuration(character.comp, duration);
             if (character.sitting){
                 sittingDown(character.comp, 0);
+                }
+            for ( var i = 0; i <  character.movements.length; i++ ){
+                var movement = character.movements[i][0];
+                var args = character.movements[i][1];
+                args.unshift(character.comp);
+                movement.apply(this, args);
                 }
             return character.comp;
 };
