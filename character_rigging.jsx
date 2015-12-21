@@ -1,4 +1,4 @@
-﻿#include "C:/Users/epalman/Documents/Adobe Scripts/Duik_api.jsxinc"
+#include "C:/Users/epalman/Documents/Adobe Scripts/Duik_api.jsxinc"
 //#include "C:/Users/epalman/Documents/Adobe Scripts/libduik.jsxinc"
 #include "C:/Users/epalman/Documents/Adobe Scripts/repetitive_actions.jsxinc"
 
@@ -137,4 +137,8 @@ var characterComp = importImage(characterPath, true);
 createAllPuppetPins(characterComp);
 /*comp = app.project.activeItem
 talkingHead(comp);*/
+<<<<<<< HEAD
 app.endUndoGroup();
+=======
+app.endUndoGroup();
+>>>>>>> c65f21d2e4a8967acc7a8e2a73fb3a615feb482f
