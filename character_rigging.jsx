@@ -1,9 +1,9 @@
-﻿#include "C:/Users/epalman/Documents/Adobe Scripts/Duik_api.jsxinc"
+#include "C:/Users/epalman/Documents/Adobe Scripts/Duik_api.jsxinc"
 //#include "C:/Users/epalman/Documents/Adobe Scripts/libduik.jsxinc"
 #include "C:/Users/epalman/Documents/Adobe Scripts/repetitive_actions.jsxinc"
 
-var characterPath = "C:/Users/epalman/Documents/cartoon/characters/adviser/full.psd";
-var projectPath = "C:/Users/epalman/Documents/cartoon/characters/adviser/comp.aep";
+var characterPath = "C:/Users/epalman/Documents/cartoon/characters/noonan/michaelnoonan.psd";
+var projectPath = "C:/Users/epalman/Documents/cartoon/characters/noonan/micaelnoonan.aep";
 
 function renameBones(comp, pinGroup, layer, pinGroups, layerNames){
          layer.selected = false;
@@ -35,15 +35,15 @@ function renameBones(comp, pinGroup, layer, pinGroups, layerNames){
         createPuppetPins(comp, pinGroups, layerNames)  
     }
     
-function boneDialog(comp, pinGroup, layer, pinGroups, layerNames){
+function makeBone(comp, pinGroup, layer, pinGroups, layerNames){
          writeLn('Creating bones for layer ' + layer.name);
          var pins = getPins(layer);
          for ( var i = 0; i <  pins.length; i++ ) { 
              pins[i].selected=false;
-             }
+        }
         layer.selected = true;
         doBone();
-        renameBones(comp, pinGroup, layer, pinGroups, layerNames)
+        renameBones(comp, pinGroup, layer, pinGroups, layerNames);
     }
 
 function createPuppetPinDialogs(comp, pinGroup, layer, pinGroups, layerNames) {
@@ -52,14 +52,14 @@ function createPuppetPinDialogs(comp, pinGroup, layer, pinGroups, layerNames) {
         openWizardWindow('Create puppet pin for ' + bodyPart + ' on layer ' + layer.name, createPuppetPinDialogs, [comp, pinGroup, layer, pinGroups, layerNames]);      
         }
     else{
-        boneDialog(comp, pinGroup, layer, pinGroups, layerNames)
+        makeBone(comp, pinGroup, layer, pinGroups, layerNames);
         }
 }    
     
 function createPuppetPins(comp, pinGroups, layerNames){
         var layerName = layerNames.next()
         var pinGroup = pinGroups.next()
-        iterifyArr(pinGroup)
+        iterifyArr(pinGroup);
         if (layerName) {
             writeLn('Creating puppet pins for layer ' + layerName);
             var layer = comp.layer(layerName);
@@ -74,6 +74,7 @@ function createPuppetPins(comp, pinGroups, layerNames){
 function createAllPuppetPins(comp){
         writeLn("Creating Puppet Pins");
         var bodyPins=["Pelvis", "Neck"];
+        //var headPins=[];
         var rightArmPins = ["R Arm", "R Forearm", "R Hand"];
         var leftArmPins = ["L Arm", "L Forearm", "L Hand"];
         var rightLegPins = ["R Thigh", "R Calf", "R Foot"];
@@ -88,7 +89,6 @@ function createAllPuppetPins(comp){
         createPuppetPins(comp, pinGroups, layerNames);
 }
     
-
 function setLayerParent(comp, layerName, parentName){
     writeLn("Parenting " + layerName + " to " + parentName);
     var layer = comp.layer(layerName);
@@ -104,8 +104,9 @@ function setLayerParents(comp){
     }
     setLayerParent(comp, "Pupil Right", "Eye Right");
     setLayerParent(comp, "Pupil Left", "Eye Left");
+    setLayerParent(comp, "Head", "Neck");
     openWizardWindow ('Now run the Duik Auto-Rig command', talkingHead, [comp])
-}
+};
 
 function setTalkingHeadLayer(comp, headLayers){
         layers = comp.selectedLayers;
@@ -118,29 +119,22 @@ function setTalkingHeadLayer(comp, headLayers){
             layer.selected = true;
             openWizardWindow ('Press the ' + layerName + ' button on Talking Head', setTalkingHeadLayer, [comp, headLayers])    
             }
-        /*else{
-            var mouthLayers=["Mouth Open", "Mouth Closed", "Mouth Round"];
-            for ( var i = 0; i < mouthLayers.length; i++ ) { 
-                var layerName = mouthLayers[i];
-                var layer = comp.layer(layerName);
-                layer.selected = true;
-                }
-            openWizardWindow('Press the Mouth button on Talking Head');
-    }        */
-    }
+};
 
 function talkingHead(comp){
-    var headLayers=["Eyebrow Left", "Eyebrow Right", "Pupil Left", "Pupil Right", "Eye Left", "Eye Right", "Jaw", "Face"];
+    var layer = comp.layer('C_L Hand');
+    layer.property('Effects').property('IK Orientation')('Checkbox').setValue(false);
+    var headLayers=["Eyebrow Left", "Eyebrow Right", "Pupil Left", "Pupil Right", "Eye Left", "Eye Right", "Jaw", "Face", "Mouth Closed", "Mouth Open", "Mouth Round"];
     iterifyArr(headLayers);
     setTalkingHeadLayer(comp, headLayers);
-    var thLayer = comp.layers['Talking Head Controls'];
-    thLayer.property("Effects").property('Mouth Shape Open')('Slider').setValue(2.00);
-    }
+    /*var thLayer = comp.layers['Talking Head Controls'];
+    thLayer.property("Effects").property('Mouth Shape Open')('Slider').setValue(1.00);*/
+};
 
 app.beginUndoGroup('Character Rigging');
 var project = getProject(projectPath);
 var characterComp = importImage(characterPath, true);
 createAllPuppetPins(characterComp);
-comp = app.project.activeItem;
-talkingHead(comp);
+/*comp = app.project.activeItem
+talkingHead(comp);*/
 app.endUndoGroup();
