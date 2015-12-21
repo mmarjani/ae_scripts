@@ -313,7 +313,7 @@ function focusOnSpeakerTimes(comp){
             var value1 = 0;
             for (var k = 1; k <= property.numKeys; k++){ 
                 var value2 = property.keyValue(k);
-                if ((value0 < 1) && (value1 < 1) && (value2 > 2)){
+                if ((value0 < 1) && (value1 < 1) && (value2 > 1.8)){
                     var time = property.keyTime(k) - 0.25;
                     times.push(time);
                     }
