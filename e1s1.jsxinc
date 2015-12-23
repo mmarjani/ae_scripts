@@ -10,7 +10,8 @@ var endakenny = {
     audio_path:"C:/Users/epalman/Documents/cartoon/episode1/scenes/scene1/scene1_enda.mp3",
     sitting:false,
     movements:[
-                        [sitDown, [1, 2]]
+                        [sitDown, [1, 2]],
+                        [standUp, [1, 31]],
                     ]
 };
 

@@ -201,7 +201,8 @@ function addOffsetKeyframe(comp, layerName, category, property, time, offsetValu
 function addOffsetKeyframes(comp, layerName, category, property, cycle, overrideFirstValue, speed, startTime, offsetTimes, offsetValues){
     var values = [];
     if (overrideFirstValue){
-        offsetValues[0] = getInitialValue(comp, layerName, category, property);
+        var layer = comp.layer(layerName);
+        offsetValues[0] = layer.property(category).property(property).valueAtTime(startTime, true);
         }
     var previous_x = 0;
     var previous_y = 0;
@@ -282,8 +283,10 @@ function focusOn(precomp, position, comp){
         scales[i] = [400,400];
     }
     //precomp.transform.position.setValuesAtTimes(times, positions);
-    precomp.property('Transform').property('Anchor Point').setValuesAtTimes(times, positions);
-    setPropertyInterpolationType(precomp, 'Transform', 'Anchor Point', KeyframeInterpolationType.HOLD);
+    //precomp.property('Transform').property('Anchor Point').setValuesAtTimes(times, positions);
+    precomp.property('Transform').property('Position').setValuesAtTimes(times, positions);
+    //setPropertyInterpolationType(precomp, 'Transform', 'Anchor Point', KeyframeInterpolationType.HOLD);
+    setPropertyInterpolationType(precomp, 'Transform', 'Position', KeyframeInterpolationType.HOLD);
     //setPropertyInterpolationType(precomp, 'Transform', 'Position', KeyframeInterpolationType.HOLD);
     precomp.property('Transform').property('Scale').setValuesAtTimes(times, scales);
     setPropertyInterpolationType(precomp, 'Transform', 'Scale', KeyframeInterpolationType.HOLD);
@@ -297,8 +300,8 @@ function defaultFocus(precomp, times){
         positions[i] = position
         scales[i] = [100, 100];
     }
-    precomp.property('Transform').property('Anchor Point').setValuesAtTimes(times, positions);
-    //precomp.transform.position.setValuesAtTimes(times, positions);
+    //precomp.property('Transform').property('Anchor Point').setValuesAtTimes(times, positions);
+    precomp.transform.position.setValuesAtTimes(times, positions);
     precomp.transform.scale.setValuesAtTimes(times, scales);
 };
 
@@ -350,7 +353,7 @@ function sitDown(comp, speed, startTime){
 };
     
 function standUp(comp, speed, startTime){
-   addOffsetKeyframes(comp, 'C_Pelvis', 'transform', 'position', false, true, speed, startTime, [0, 0.208333], [[-582,-1119],[240, -352]]); 
+   addOffsetKeyframes(comp, 'C_Pelvis', 'transform', 'position', false, true, speed, startTime, [0, 0.208333], [[-582,-1119],[268, -144]]); 
 };
     
 function sittingDown(comp, time){

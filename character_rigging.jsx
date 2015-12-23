@@ -1,9 +1,9 @@
-#include "C:/Users/epalman/Documents/Adobe Scripts/Duik_api.jsxinc"
+﻿#include "C:/Users/epalman/Documents/Adobe Scripts/Duik_api.jsxinc"
 //#include "C:/Users/epalman/Documents/Adobe Scripts/libduik.jsxinc"
 #include "C:/Users/epalman/Documents/Adobe Scripts/repetitive_actions.jsxinc"
 
-var characterPath = "C:/Users/epalman/Documents/cartoon/characters/noonan/michaelnoonan.psd";
-var projectPath = "C:/Users/epalman/Documents/cartoon/characters/noonan/micaelnoonan.aep";
+var characterPath = "C:/Users/epalman/Documents/cartoon/characters/adviser/adviser.psd";
+var projectPath = "C:/Users/epalman/Documents/cartoon/characters/adviser/adviser.aep";
 
 function renameBones(comp, pinGroup, layer, pinGroups, layerNames){
          layer.selected = false;
@@ -117,7 +117,7 @@ function setTalkingHeadLayer(comp, headLayers){
         if (layerName){
             var layer = comp.layer(layerName);
             layer.selected = true;
-            openWizardWindow ('Press the ' + layerName + ' button on Talking Head', setTalkingHeadLayer, [comp, headLayers])    
+            openWizardWindow ('Press the ' + layerName + ' button on Talking Head', setTalkingHeadLayer, [comp, headLayers]); 
             }
 };
 
@@ -137,8 +137,4 @@ var characterComp = importImage(characterPath, true);
 createAllPuppetPins(characterComp);
 /*comp = app.project.activeItem
 talkingHead(comp);*/
-<<<<<<< HEAD
 app.endUndoGroup();
-=======
-app.endUndoGroup();
->>>>>>> c65f21d2e4a8967acc7a8e2a73fb3a615feb482f
