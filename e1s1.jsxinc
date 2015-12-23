@@ -21,7 +21,6 @@ var adviser = {
     audio_path:"C:/Users/epalman/Documents/cartoon/episode1/scenes/scene1/scene1_adviser.mp3",
     sitting:true,
     movements:[
-                [sittingDown, [0]], 
                 [lookDown, [28, 29.5, 1]]
     ]
 };
@@ -29,6 +28,7 @@ var adviser = {
 var michaelnoonan= {
     name:"michaelnoonan",
     project_path:"C:/Users/epalman/Documents/cartoon/characters/michaelnoonan/michaelnoonan.aep",
+audio_path:"C:/Users/epalman/Documents/cartoon/episode1/scenes/scene1/scene1_michaelnoonan.mp3",    
     sitting:true,
 };
 

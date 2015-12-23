@@ -1,9 +1,8 @@
 ﻿#include repetitive_actions.jsxinc
 
-var compName = "endakenny";
+var compName = "burton";
 var movements = [
-                        
-                        [standUp, [1, 31]],
+                        [sittingDown, [0]], 
                     ]
                     
 var comp = getComp(compName);

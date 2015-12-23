@@ -1,16 +1,16 @@
 ﻿#include "C:/Users/epalman/Documents/Adobe Scripts/repetitive_actions.jsxinc"
 
 compName = 'e1s1';
-defaultPosition = [930, 990];
+defaultPosition = [1875, 990];
 defaultFocusTimes = [0, 31];
 characters = [
     {
         name: 'endakenny',
-        position: [2450,3122]
+        position: [3843,3314]
      },
      {
         name: 'adviser',
-        position: [3678,2150]
+        position: [7167,2142]
      },
 ]
 

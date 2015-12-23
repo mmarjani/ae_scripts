@@ -257,7 +257,7 @@ function setEffectPropertyInterpolationType(layer, effectName, propertyName, int
 };
 
 function newComp(name, duration){
-    return app.project.items.addComp(name, width, height, pixelAspect, duration, fps);
+    return app.project.items.addComp(name, config.width, config.height, config.pixelAspect, duration, config.fps);
 };
 
 function newPreComp(comp){
@@ -267,10 +267,9 @@ function newPreComp(comp){
         layerIndices[i-1] = i;
     }
     comp.layers.precompose(layerIndices, 'Pre-Comp', true);
-    //var precomp = getComp ('Pre-Comp');
     var precomp = comp.layer('Pre-Comp');
-    /*precomp.height = ;
-    precomp.width = ;*/
+    precomp.height =  config.height;
+    precomp.width = config.width;
     return precomp;
 };
     
